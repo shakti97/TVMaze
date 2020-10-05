@@ -1,9 +1,16 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { getByTestId, render } from "@testing-library/react";
+import ShowSummaryBox from "./Components/ShowSummaryBox";
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const showData = {
+  Name: "Fake Shows",
+  Status: "Completed",
+  Rating: "5",
+  Image: "http://www.fakeimage.com",
+};
+test("renders Summary Box", () => {
+  const { getByTestId } = render(<ShowSummaryBox {...showData} />);
+  expect(getByTestId("name")).toHaveTextContent("Fake Shows");
+  expect(getByTestId("status")).toHaveTextContent("Completed");
+  expect(getByTestId("rating")).toHaveTextContent("5");
 });
